@@ -1,0 +1,55 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Lead } from './docs-blocks';
+
+<Meta title="Guidelines" />
+
+# Guidelines
+
+<Lead>How Patronim looks, speaks and behaves, in one page. When the app and this page disagree, the app is wrong.</Lead>
+
+## The organizing idea
+
+The **turnover window**, from guest checkout to the next check-in, is the real deadline of the service. It organizes
+every role: the manager tracks it, the cleaner races it, the inspector sorts by it. The window bar is the one bold
+element; cards, lists and headers stay quiet around it.
+
+## Color
+
+| Role | Tokens | Rule |
+| --- | --- | --- |
+| Text | `ink`, `muted` | `muted` passes 4.5:1 on both `surface` and `canvas` |
+| Brand and actions | `navy`, `navy-soft` | Primary buttons, selection, the current step. Not decoration |
+| Surfaces | `surface`, `canvas`, `line` | Cards are `surface` on `canvas` with a `line` border, no shadow |
+| Status | `ok`, `risk`, `late` | Fills, bars and icons |
+| Status text | `ok-ink`, `risk-ink`, `late-ink` | Status words. The fill colors fail AA as text |
+
+## Status vocabulary
+
+| Manager sees | Tone | Icon |
+| --- | --- | --- |
+| Scheduled | brand | clock |
+| Cleaning | brand | sparkles |
+| Inspection | brand | clipboard |
+| Rework in progress | risk | rotate |
+| At risk | risk or late | triangle |
+| Ready | ok | check |
+
+## Type and shape
+
+- Scale 28 / 22 / 17 / 15 / 13. Weights 400, 500, 700. Tabular numerals for every time and price.
+- Radius by hierarchy: sheets 20, cards 14, controls 12, chips pill.
+- Elevation only on bottom sheets, sticky footers and toasts.
+
+## Copy
+
+- English, sentence case, active voice, plain words. No internal jargon ("Mid Holiday NoSheets" is gone).
+- A button says what happens: "Book cleaning", "Start cleaning", "Send back to cleaner", "Mark as ready".
+- The same action keeps its name: button "Mark as ready" → toast "Marked as ready".
+- Errors say what happened and how to fix it. No apologies.
+
+## Adding or changing a component
+
+1. Missing a value? Add it to `tokens.js` with a `use` note. Tailwind and these docs pick it up.
+2. Build the component in `src/components/`, props only, one file.
+3. Write its story with every variant and state; add an `.mdx` when it needs do / don't guidance.
+4. Check the Accessibility panel for violations before using it in a screen.

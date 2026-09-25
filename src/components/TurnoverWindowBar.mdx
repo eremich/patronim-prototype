@@ -1,0 +1,65 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import * as Stories from './TurnoverWindowBar.stories';
+import { TurnoverWindowBar } from './TurnoverWindowBar';
+import { DoDont, DoDontRow, Lead } from '../design-system/docs-blocks';
+
+<Meta of={Stories} />
+
+# Turnover window bar
+
+<Lead>
+  The one bold element of Patronim. Checkout on the left, the next guest's check-in on the right, the cleaning block
+  inside and a "now" marker. It answers one question for every role: will the apartment be ready before the guest arrives?
+</Lead>
+
+<Canvas of={Stories.Cleaning} />
+<Controls of={Stories.Cleaning} />
+
+## Anatomy
+
+| Part | Meaning |
+| --- | --- |
+| Left time | Guest checkout. Work can start from here |
+| Right time (bold) | Guest check-in. The deadline |
+| Solid block | Cleaning already done |
+| Hatched block | Cleaning still to do (planned or projected) |
+| Navy tail | Inspection, 30 min after the clean |
+| Black line and "Now" pill | Current time. Hidden when outside the window or once ready |
+| Hatched red area past a black line | Time the cleaning runs past check-in |
+| Caption | The verdict in words: "30 min to spare", "Finishes 40 min after check-in" |
+
+## Health
+
+<Canvas of={Stories.CompactStates} />
+
+| Health | When | Color |
+| --- | --- | --- |
+| On track | Cleaning and inspection end before check-in | `ok` |
+| At risk | Cleaning ends in time, inspection does not | `risk` |
+| Late | Cleaning itself ends after check-in | `late` |
+
+## Where it appears
+
+- **Manager:** Today list (compact), Book a cleaning (full, live preview), Job tracking (full).
+- **Cleaner:** Jobs list (compact), Job detail (full).
+- **Inspector:** Queue (compact).
+
+## Do and don't
+
+<DoDontRow>
+  <DoDont tone="do" title="Say the verdict in words next to the color, so the state reads without seeing hue.">
+    <div className="w-72"><TurnoverWindowBar checkout={660} checkin={900} start={720} finish={870} now={700} health="risk" /></div>
+  </DoDont>
+  <DoDont tone="dont" title="Don't use it as decoration or stack more than one full bar per screen. It loses its job as the focal point.">
+    <div className="flex w-72 flex-col gap-2 opacity-60">
+      <TurnoverWindowBar checkout={660} checkin={900} start={720} finish={870} health="ok" variant="compact" />
+      <TurnoverWindowBar checkout={660} checkin={900} start={720} finish={870} health="ok" variant="compact" />
+    </div>
+  </DoDont>
+</DoDontRow>
+
+## Accessibility
+
+- Rendered as `role="img"` with a full sentence label: window, cleaning times and verdict.
+- The verdict caption uses the `-ink` text shades (AA). Fills use the brief colors.
+- Times use tabular numerals so they don't shift while updating.

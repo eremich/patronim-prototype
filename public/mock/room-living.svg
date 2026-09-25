@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600"><defs><radialGradient id="sun" cx="0.3" cy="0.2" r="0.9"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
+  <rect width="800" height="600" fill="#ECEEF3"/>
+  <rect y="440" width="800" height="160" fill="#D8C7B3"/>
+  <rect x="560" y="60" width="200" height="380" fill="#CFE3F2" stroke="#fff" stroke-width="12"/><path d="M660 60v380" stroke="#fff" stroke-width="8"/>
+  <rect x="120" y="110" width="170" height="120" fill="#fff" stroke="#2B3A67" stroke-width="8"/><circle cx="185" cy="170" r="30" fill="#E9A23B"/><path d="M130 220l60-40 50 30 40-20v30z" fill="#1B2FA0"/>
+  <ellipse cx="330" cy="520" rx="260" ry="40" fill="#C7B39C"/>
+  <rect x="80" y="310" width="400" height="120" rx="24" fill="#9DB0D6"/>
+  <rect x="60" y="360" width="440" height="90" rx="24" fill="#8499C6"/>
+  <rect x="110" y="300" width="100" height="70" rx="18" fill="#F2E3C4"/><rect x="340" y="300" width="100" height="70" rx="18" fill="#E7EBF3"/>
+  <rect x="250" y="470" width="180" height="16" rx="6" fill="#B08D6E"/><path d="M270 486v30M410 486v30" stroke="#997559" stroke-width="6"/>
+  <path d="M520 450v-230" stroke="#555" stroke-width="5"/><path d="M490 220h60l-12-44h-36z" fill="#F7F8FB"/>
+  <rect width="800" height="600" fill="url(#sun)"/></svg>
