@@ -16,8 +16,9 @@ export const Properties = () => {
   const navigate = useNavigate();
   const jobs = useStore((s) => s.jobs);
   return (
-    <div className="screen-enter px-4 pb-6">
+    <div className="screen-enter flex flex-col">
       <ScreenHeader large title="Properties" subtitle={`${PROPERTIES.length} apartments in Tel Aviv`} trailing={<RoleAvatar role="manager" />} />
+      <div className="px-4 pb-6">
       <ul className="-mt-2 flex flex-col gap-3">
         {PROPERTIES.map((p) => {
           const next = jobs.filter((j) => j.propertyId === p.id && j.status !== 'ready').sort((a, b) => a.checkin - b.checkin)[0];
@@ -40,6 +41,7 @@ export const Properties = () => {
           );
         })}
       </ul>
+          </div>
     </div>
   );
 };
@@ -51,8 +53,9 @@ export const Bookings = () => {
   const done = jobs.filter((j) => j.status === 'ready');
   const spent = jobs.reduce((a, j) => a + j.price, 0);
   return (
-    <div className="screen-enter flex flex-col gap-6 px-4 pb-6">
+    <div className="screen-enter flex flex-col">
       <ScreenHeader large title="Bookings" subtitle={`This month ${money(spent + 4210)}`} trailing={<RoleAvatar role="manager" />} />
+      <div className="flex flex-col gap-6 px-4 pb-6">
       <section className="-mt-4">
         <SectionTitle>Upcoming and in progress</SectionTitle>
         <ul className="flex flex-col gap-3">
@@ -76,13 +79,15 @@ export const Bookings = () => {
           </ul>
         </section>
       )}
+          </div>
     </div>
   );
 };
 
 export const Account = () => (
-  <div className="screen-enter flex flex-col gap-6 px-4 pb-6">
+  <div className="screen-enter flex flex-col">
     <ScreenHeader large title="Account" subtitle="Dana Levi · Property manager" trailing={<RoleAvatar role="manager" />} />
+    <div className="flex flex-col gap-6 px-4 pb-6">
     <Card padded={false} className="-mt-4 px-4">
       <ListItem divider leading={<CreditCard aria-hidden className="size-5 text-muted" />} title="Payment methods" subtitle="Visa •••• 4242, PayPal, invoice" onClick={() => {}} />
       <ListItem divider leading={<FileText aria-hidden className="size-5 text-muted" />} title="Invoices and receipts" subtitle="Sent to dana.levi@mail.com" onClick={() => {}} />
@@ -93,5 +98,6 @@ export const Account = () => (
       <ListItem leading={<LogOut aria-hidden className="size-5 text-muted" />} title="Sign out" />
     </Card>
     <AppearanceCard />
+      </div>
   </div>
 );

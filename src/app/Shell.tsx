@@ -196,10 +196,17 @@ export const Shell = ({ children }: { children?: ReactNode }) => {
         className="relative flex h-[100dvh] w-full flex-col overflow-clip bg-canvas phone:h-[844px] phone:w-[390px] phone:rounded-phone phone:shadow-phone"
       >
         <StatusBar />
-        <main ref={main} id="screen" className="scroll-area relative flex flex-1 flex-col">
+        {/* With the floating tab bar, content scrolls under it; the bottom padding keeps the last item reachable */}
+        <main ref={main} id="screen" className={cx('scroll-area relative flex flex-1 flex-col', activeTab && 'pb-24')}>
           {children ?? <Outlet />}
         </main>
-        {activeTab && <TabBar items={items} active={activeTab.key} onSelect={(k) => navigate(tabs.find((t) => t.key === k)!.path)} />}
+        {activeTab && (
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-tabbar px-4 pb-[max(20px,env(safe-area-inset-bottom))]">
+            <div className="pointer-events-auto">
+              <TabBar items={items} active={activeTab.key} onSelect={(k) => navigate(tabs.find((t) => t.key === k)!.path)} />
+            </div>
+          </div>
+        )}
         <div id="sheet-root" className="pointer-events-none absolute inset-0 z-sheet" />
         <ToastViewport />
         <RoleSheet onPick={pick} />

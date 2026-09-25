@@ -72,6 +72,21 @@ export const elevation = {
   sheet: { value: '0 -8px 32px rgba(19, 26, 58, 0.14)', use: 'Bottom sheets' },
   footer: { value: '0 -4px 16px rgba(19, 26, 58, 0.08)', use: 'Sticky footers, tab bar' },
   toast: { value: '0 8px 24px rgba(19, 26, 58, 0.24)', use: 'Toasts' },
+  floating: { value: '0 10px 30px rgba(19, 26, 58, 0.16), 0 1px 3px rgba(19, 26, 58, 0.10)', use: 'Floating tab bar' },
+};
+
+/**
+ * Materials. Glass is reserved for system-level floating chrome (the tab bar), like iOS 26 Liquid Glass.
+ * Never on cards or content: frosted cards everywhere read as AI slop.
+ */
+export const material = {
+  glass: {
+    blur: 24,
+    saturate: 180,
+    light: { alpha: 0.72, edge: 'rgba(255, 255, 255, 0.65)' },
+    dark: { alpha: 0.62, edge: 'rgba(255, 255, 255, 0.09)' },
+    use: 'Floating tab bar only: surface at partial opacity, backdrop blur and saturation, light inner edge',
+  },
 };
 
 export const motion = {
@@ -80,4 +95,5 @@ export const motion = {
   press: { value: '160ms', use: 'Button scale to 0.97 on press' },
   sheet: { value: '320ms in / 200ms out', use: 'Bottom sheet slide' },
   toast: { value: '240ms', use: 'Toast rise and fade' },
+  'tab-indicator': { value: '260ms ease-out', use: 'Selected tab capsule slides to the new tab' },
 };

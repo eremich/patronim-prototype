@@ -61,8 +61,9 @@ export const History = () => {
   const jobs = useStore((s) => s.jobs);
   const done = jobs.filter((j) => j.status === 'ready' || j.status === 'rework');
   return (
-    <div className="screen-enter flex flex-col gap-4 px-4 pb-6">
+    <div className="screen-enter flex flex-col">
       <ScreenHeader large title="History" subtitle="This week" trailing={<RoleAvatar role="inspector" />} />
+      <div className="flex flex-col gap-4 px-4 pb-6">
       <Card padded={false} className="-mt-4 px-4">
         {done.map((j) => (
           <ListItem
@@ -76,13 +77,15 @@ export const History = () => {
         <ListItem divider title="77 Ben Yehuda St, Apt 4" subtitle="Tue 29 Sep" trailing={<StatusBadge tone="ok" label="Passed" size="sm" />} />
         <ListItem title="164 Hayarkon St, Apt 12" subtitle="Mon 28 Sep" trailing={<StatusBadge tone="ok" label="Passed" size="sm" />} />
       </Card>
+          </div>
     </div>
   );
 };
 
 export const InspectorProfile = () => (
-  <div className="screen-enter flex flex-col gap-6 px-4 pb-6">
+  <div className="screen-enter flex flex-col">
     <ScreenHeader large title="Profile" trailing={<RoleAvatar role="inspector" />} />
+    <div className="flex flex-col gap-6 px-4 pb-6">
     <Card className="-mt-4 flex items-center gap-3">
       <Avatar size="lg" initials="NS" name="Noa Shapiro" />
       <div>
@@ -109,5 +112,6 @@ export const InspectorProfile = () => (
       </Card>
     </section>
     <AppearanceCard />
+      </div>
   </div>
 );

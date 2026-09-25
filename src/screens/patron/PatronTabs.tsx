@@ -16,8 +16,9 @@ const THREADS = [
 ];
 
 export const Messages = () => (
-  <div className="screen-enter px-4 pb-6">
+  <div className="screen-enter flex flex-col">
     <ScreenHeader large title="Messages" trailing={<RoleAvatar role="patron" />} />
+    <div className="px-4 pb-6">
     <Card padded={false} className="-mt-2 px-4">
       {THREADS.map((t) => (
         <ListItem
@@ -30,6 +31,7 @@ export const Messages = () => (
         />
       ))}
     </Card>
+      </div>
   </div>
 );
 
@@ -41,8 +43,9 @@ const RECENT = [
 ];
 
 export const Earnings = () => (
-  <div className="screen-enter flex flex-col gap-6 px-4 pb-6">
+  <div className="screen-enter flex flex-col">
     <ScreenHeader large title="Earnings" subtitle="October so far" trailing={<RoleAvatar role="patron" />} />
+    <div className="flex flex-col gap-6 px-4 pb-6">
     <div className="-mt-4">
       <p className="text-caption text-muted">This month</p>
       <p className="tnum text-display font-bold">{money(6840)}</p>
@@ -68,6 +71,7 @@ export const Earnings = () => (
         ))}
       </Card>
     </section>
+      </div>
   </div>
 );
 
@@ -75,8 +79,9 @@ export const PatronProfile = () => {
   const offline = useStore((s) => s.offline);
   const setOffline = useStore((s) => s.setOffline);
   return (
-    <div className="screen-enter flex flex-col gap-6 px-4 pb-6">
+    <div className="screen-enter flex flex-col">
       <ScreenHeader large title="Profile" trailing={<RoleAvatar role="patron" />} />
+      <div className="flex flex-col gap-6 px-4 pb-6">
       <Card className="-mt-4 flex items-center gap-3">
         <Avatar size="lg" initials="AM" name="Avi Mizrahi" />
         <div>
@@ -97,6 +102,7 @@ export const PatronProfile = () => {
         </label>
       </Card>
       <AppearanceCard />
+          </div>
     </div>
   );
 };

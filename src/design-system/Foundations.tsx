@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { color, elevation, motion, radius, space, type } from './tokens.js';
+import { color, elevation, material, motion, radius, space, type } from './tokens.js';
 
 /** Foundations pages render tokens.js directly — values are never copied into docs. */
 
@@ -130,6 +130,22 @@ export const ShapePage = () => (
     <p className="mt-3 text-body text-muted">
       Screen padding {space.screen}. Touch targets at least {space.touch} × {space.touch}.
     </p>
+    <h2 className="mb-3 mt-10 text-title font-bold">Material: glass</h2>
+    <p className="mb-3 max-w-2xl text-body text-muted">{material.glass.use}. Blur {material.glass.blur}px, saturation {material.glass.saturate}%.</p>
+    <div className="flex flex-wrap gap-6">
+      {(['light', 'dark'] as const).map((theme) => (
+        <div key={theme} data-theme={theme} className="relative h-40 w-80 overflow-hidden rounded-card bg-canvas">
+          <div className="absolute inset-0 flex flex-col gap-2 p-3">
+            <div className="h-8 rounded-bar bg-ok/70" />
+            <div className="h-8 w-2/3 rounded-bar bg-navy/70" />
+            <div className="h-8 w-1/2 rounded-bar bg-risk/70" />
+          </div>
+          <div className="material-glass absolute inset-x-3 bottom-3 flex h-14 items-center justify-center rounded-chip text-body font-bold text-ink shadow-floating">
+            {theme} · alpha {material.glass[theme].alpha}
+          </div>
+        </div>
+      ))}
+    </div>
     <h2 className="mb-3 mt-10 text-title font-bold">Elevation</h2>
     <div className="flex flex-wrap gap-6 bg-canvas p-6">
       {Object.entries(elevation).map(([name, t]) => (

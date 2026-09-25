@@ -22,3 +22,25 @@ export const Example: Story = {
     </div>
   ),
 };
+
+export const LargeTitleCollapsing: Story = {
+  name: 'Large title collapsing on scroll',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Scroll the frame. When the large title slides under the top edge, the same title appears in a compact 44 px bar (translucent canvas, hairline border). The bar overlays content, so nothing shifts. The compact title is aria-hidden: screen readers get one heading.',
+      },
+    },
+  },
+  render: () => (
+    <div className="scroll-area relative h-[420px] w-[358px] overflow-y-auto rounded-card border border-line bg-canvas">
+      <ScreenHeader large title="Today" subtitle="Thu 1 Oct · Holiday week" trailing={<Avatar initials="DL" name="Dana Levi" />} />
+      <div className="flex flex-col gap-3 px-4 pb-6">
+        {Array.from({ length: 8 }, (_, i) => (
+          <div key={i} className="h-24 rounded-card border border-line bg-surface" />
+        ))}
+      </div>
+    </div>
+  ),
+};

@@ -36,6 +36,27 @@
   .press:active:not(:disabled) {
     transform: scale(0.97);
   }
+  /* Glass material (tokens: material.glass). Only for floating system chrome. */
+  .material-glass {
+    background-color: rgb(var(--c-surface) / var(--glass-alpha));
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    backdrop-filter: blur(24px) saturate(180%);
+    position: relative;
+  }
+  /* Light inner edge, kept off box-shadow so the element can still carry its elevation */
+  .material-glass::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 1px var(--glass-edge);
+    pointer-events: none;
+  }
+  @supports not (backdrop-filter: blur(1px)) {
+    .material-glass {
+      background-color: rgb(var(--c-surface) / 0.96);
+    }
+  }
   .scroll-area {
     overflow-y: auto;
     overscroll-behavior: contain;
