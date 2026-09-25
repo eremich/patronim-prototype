@@ -5,6 +5,7 @@ import type { InspectionMark, Job, MissingItem, Role, Scenario } from '../data/t
 import { plannedStart } from '../lib/health';
 import { quote, serviceDuration } from '../lib/pricing';
 import { MIN_PER_DAY, NOW, START_NOW, setNow } from '../lib/time';
+import { applyTheme, saveTheme, type ThemeChoice } from '../lib/theme';
 
 export interface ToastMsg {
   id: number;
@@ -25,6 +26,8 @@ interface State {
   /** Screens that already showed their loading skeleton */
   loaded: Record<string, boolean>;
   roleSheetOpen: boolean;
+  theme: ThemeChoice;
+  setTheme: (t: ThemeChoice, persist?: boolean) => void;
 
   loadScenario: (s: Scenario) => void;
   setRole: (r: Role) => void;
@@ -77,6 +80,12 @@ export const useStore = create<State>((set, get) => {
     toasts: [],
     loaded: {},
     roleSheetOpen: false,
+    theme: 'system',
+    setTheme: (theme, persist = true) => {
+      applyTheme(theme);
+      if (persist) saveTheme(theme);
+      set({ theme });
+    },
 
     loadScenario: (scenario) => {
       const { now = START_NOW, ...rest } = seed(scenario);

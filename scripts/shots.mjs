@@ -1,4 +1,4 @@
-// npm run shots — renders the 15 portfolio screenshots into shots/ (brief §10).
+// npm run shots — renders the 15 portfolio screenshots into shots/ (brief §10), and the same 15 in dark theme into shots/dark/.
 // Starts its own Vite server, so no manual steps are needed.
 import { mkdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -7,7 +7,8 @@ import { chromium } from 'playwright';
 
 const PORT = 5199;
 const OUT = new URL('../shots/', import.meta.url);
-mkdirSync(OUT, { recursive: true });
+mkdirSync(new URL('dark/', OUT), { recursive: true });
+let theme = 'light';
 
 const server = await createServer({ server: { port: PORT, strictPort: true }, logLevel: 'error' });
 await server.listen();
@@ -18,7 +19,7 @@ const context = await browser.newContext({ viewport: { width: 390, height: 844 }
 const page = await context.newPage();
 
 const open = async (path) => {
-  await page.goto(base + path);
+  await page.goto(`${base}${path}&theme=${theme}`);
   await page.evaluate(() => document.fonts.ready);
   await page.waitForTimeout(750); // loading skeletons are 600 ms
 };
@@ -36,8 +37,9 @@ const scrollTo = async (selector, offset = 8) => {
 const setCheckin = (v) => page.getByLabel('Guest check-in').selectOption(String(v));
 const shot = async (name) => {
   await page.waitForTimeout(250);
-  await page.locator('#phone').screenshot({ path: fileURLToPath(new URL(name, OUT)) });
-  console.log('  ✓', name);
+  const dir = theme === 'dark' ? new URL('dark/', OUT) : OUT;
+  await page.locator('#phone').screenshot({ path: fileURLToPath(new URL(name, dir)) });
+  console.log('  ✓', theme, name);
 };
 
 const steps = [
@@ -126,17 +128,17 @@ const steps = [
 ];
 
 let failed = 0;
-for (const [name, run] of steps) {
+for (theme of ['light', 'dark']) for (const [name, run] of steps) {
   try {
     await run();
     await shot(name);
   } catch (e) {
     failed++;
-    console.error('  ✗', name, e.message.split('\n')[0]);
+    console.error('  ✗', theme, name, e.message.split('\n')[0]);
   }
 }
 
 await browser.close();
 await server.close();
-console.log(failed ? `${failed} screenshot(s) failed` : `All ${steps.length} screenshots saved to shots/`);
+console.log(failed ? `${failed} screenshot(s) failed` : `All ${steps.length * 2} screenshots saved to shots/ and shots/dark/`);
 process.exit(failed ? 1 : 0);

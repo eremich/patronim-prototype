@@ -31,25 +31,45 @@ const Grade = ({ ratio }: { ratio: number }) => {
   );
 };
 
+type Theme = 'light' | 'dark';
+
+const Swatch = ({ hex, theme }: { hex: string; theme: Theme }) => (
+  <div className="flex flex-col gap-1">
+    <div className="flex items-center gap-2">
+      <div className="h-10 w-16 shrink-0 rounded-control border border-line" style={{ background: hex }} />
+      <code className="text-caption text-muted">{hex}</code>
+    </div>
+    <span className="text-caption text-muted">
+      surface <Grade ratio={contrast(hex, color.surface[theme])} />
+    </span>
+    <span className="text-caption text-muted">
+      canvas <Grade ratio={contrast(hex, color.canvas[theme])} />
+    </span>
+  </div>
+);
+
 export const ColorsPage = () => (
-  <Page title="Colors" lead="Ten brief tokens plus darker text shades for the status colors. Contrast is computed live against surface and canvas.">
-    <div className="grid gap-3">
+  <Page
+    title="Colors"
+    lead="One set of names, two themes. Components use the names; the values flip with the theme. Contrast is computed live against that theme's surface and canvas."
+  >
+    <div className="grid grid-cols-[1fr_auto_auto] gap-x-8 border-b border-line pb-2 text-caption font-bold text-muted">
+      <span>Token</span>
+      <span className="w-56">Light</span>
+      <span className="w-56">Dark</span>
+    </div>
+    <div className="divide-y divide-line">
       {Object.entries(color).map(([name, t]) => (
-        <div key={name} className="grid grid-cols-[96px_1fr_auto] items-center gap-4 rounded-card border border-line p-3">
-          <div className="h-16 rounded-control border border-line" style={{ background: t.value }} />
+        <div key={name} className="grid grid-cols-[1fr_auto_auto] items-start gap-x-8 py-4">
           <div>
-            <div className="text-headline font-bold">
-              {name} <code className="text-caption font-normal text-muted">{t.value}</code>
-            </div>
-            <div className="text-body text-muted">{t.use}</div>
+            <div className="text-headline font-bold">{name}</div>
+            <div className="max-w-sm text-body text-muted">{t.use}</div>
           </div>
-          <div className="flex flex-col items-end gap-1 text-caption text-muted">
-            <span>
-              on surface <Grade ratio={contrast(t.value, color.surface.value)} />
-            </span>
-            <span>
-              on canvas <Grade ratio={contrast(t.value, color.canvas.value)} />
-            </span>
+          <div className="w-56">
+            <Swatch hex={t.light} theme="light" />
+          </div>
+          <div className="w-56">
+            <Swatch hex={t.dark} theme="dark" />
           </div>
         </div>
       ))}

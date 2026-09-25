@@ -6,6 +6,7 @@ import { Toast } from '../components/Toast';
 import { Avatar } from '../components/Avatar';
 import { Sheet } from '../components/Sheet';
 import { ListItem } from '../components/ListItem';
+import { ThemeSwitch } from '../components/ThemeSwitch';
 import { PEOPLE, ME } from '../data/catalog';
 import { SCENARIOS } from '../data/scenarios';
 import type { Role, Scenario } from '../data/types';
@@ -94,6 +95,8 @@ const RoleSheet = ({ onPick }: { onPick: (r: Role) => void }) => {
 const DeskPanel = ({ role, onPick }: { role: Role; onPick: (r: Role) => void }) => {
   const scenario = useStore((s) => s.scenario);
   const loadScenario = useStore((s) => s.loadScenario);
+  const theme = useStore((s) => s.theme);
+  const setTheme = useStore((s) => s.setTheme);
   const navigate = useNavigate();
   const jobs = useStore((s) => s.jobs);
   const counts = {
@@ -144,6 +147,8 @@ const DeskPanel = ({ role, onPick }: { role: Role; onPick: (r: Role) => void }) 
             <option key={s}>{s}</option>
           ))}
         </select>
+        <p className="mb-2 mt-5 text-caption font-bold text-ink">Theme</p>
+        <ThemeSwitch value={theme} onChange={setTheme} label="Theme" />
         <p className="mt-2 text-caption text-muted">Clock frozen at Thu 1 Oct, {clock(NOW)}. Holiday week.</p>
       </div>
     </aside>

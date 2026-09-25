@@ -5,24 +5,34 @@
  * Each token: value + what it is for.
  */
 
+/**
+ * Semantic colors, one value per theme. Names stay the same in both themes,
+ * so components never branch on light or dark: the CSS variables flip.
+ * Dark theme: brand-tinted navy night (not black); primary actions turn light navy with dark text.
+ */
 export const color = {
-  ink: { value: '#131A3A', use: 'Primary text' },
-  navy: { value: '#1B2FA0', use: 'Brand, primary actions. Continuity with the 2019 Patronim navy' },
-  'navy-deep': { value: '#14237A', use: 'Primary action hover and pressed' },
-  'navy-soft': { value: '#E8EBF9', use: 'Selected states, brand tint surfaces' },
-  surface: { value: '#FFFFFF', use: 'Cards, sheets' },
-  canvas: { value: '#F3F5F8', use: 'App background. Cool "fresh linen" white, not cream' },
-  line: { value: '#DCE1EA', use: 'Dividers, borders' },
-  muted: { value: '#5B6478', use: 'Secondary text. 5.9:1 on surface, 5.4:1 on canvas' },
-  ok: { value: '#0F8A6A', use: 'On track, passed. Fills, bars and icons' },
-  'ok-ink': { value: '#0B6E54', use: 'On-track text. The fill color is 4.3:1, below AA for text' },
-  risk: { value: '#C9820A', use: 'At risk (window tight). Fills, bars and icons' },
-  'risk-ink': { value: '#8A5700', use: 'At-risk text. The fill color is 3.1:1, below AA for text' },
-  late: { value: '#C8363B', use: 'Late, failed item, errors' },
-  'late-ink': { value: '#B02E33', use: 'Late text on tinted fills' },
-  scrim: { value: '#131A3A', use: 'Backdrop behind sheets (used at 40%)' },
-  desk: { value: '#E4E8EF', use: 'Desktop background around the phone frame. Not part of the app' },
+  ink: { light: '#131A3A', dark: '#E9ECF6', use: 'Primary text' },
+  navy: { light: '#1B2FA0', dark: '#94A3F5', use: 'Brand, primary actions, links. Continuity with the 2019 Patronim navy' },
+  'navy-deep': { light: '#14237A', dark: '#B0BCF8', use: 'Primary action hover and pressed' },
+  'navy-soft': { light: '#E8EBF9', dark: '#232C59', use: 'Selected states, brand tint surfaces' },
+  surface: { light: '#FFFFFF', dark: '#161B31', use: 'Cards, sheets. Also the text color on filled buttons and badges' },
+  canvas: { light: '#F3F5F8', dark: '#0D1122', use: 'App background. Light: cool "fresh linen" white, not cream' },
+  line: { light: '#DCE1EA', dark: '#2B3355', use: 'Dividers, borders' },
+  muted: { light: '#5B6478', dark: '#A0A8C0', use: 'Secondary text. AA on surface and canvas in both themes' },
+  ok: { light: '#0F8A6A', dark: '#1FA37F', use: 'On track, passed. Fills, bars and icons' },
+  'ok-ink': { light: '#0B6E54', dark: '#4FCBA3', use: 'On-track text. The light fill is 4.3:1, below AA for text' },
+  risk: { light: '#C9820A', dark: '#D9951F', use: 'At risk (window tight). Fills, bars and icons' },
+  'risk-ink': { light: '#8A5700', dark: '#EBAE4A', use: 'At-risk text. The light fill is 3.1:1, below AA for text' },
+  late: { light: '#C8363B', dark: '#E0555A', use: 'Late, failed item, errors' },
+  'late-ink': { light: '#B02E33', dark: '#FF8F92', use: 'Late text on tinted fills' },
+  scrim: { light: '#131A3A', dark: '#03050C', use: 'Backdrop behind sheets (used at 40%)' },
+  desk: { light: '#E4E8EF', dark: '#070A15', use: 'Desktop background around the phone frame. Not part of the app' },
 };
+
+/** Physical phone bezel in the desktop frame. Same in both themes */
+export const bezel = '#131A3A';
+
+export const themes = ['light', 'dark'];
 
 export const font = {
   family: '"Hanken Grotesk", system-ui, sans-serif',

@@ -12,6 +12,7 @@ import { stageView } from '../../lib/status';
 import { clock } from '../../lib/time';
 import { cx } from '../../lib/cx';
 import { useStore } from '../../store/useStore';
+import { AppearanceCard } from '../../app/AppearanceCard';
 
 /** Pin positions on the static map, in % of the image */
 const PINS: Record<string, [number, number]> = {
@@ -107,5 +108,6 @@ export const InspectorProfile = () => (
         </dl>
       </Card>
     </section>
+    <AppearanceCard />
   </div>
 );

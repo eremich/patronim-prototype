@@ -10,6 +10,7 @@ import { money } from '../../lib/pricing';
 import { when } from '../../lib/time';
 import { useStore } from '../../store/useStore';
 import { ManagerJobCard } from './Today';
+import { AppearanceCard } from '../../app/AppearanceCard';
 
 export const Properties = () => {
   const navigate = useNavigate();
@@ -91,5 +92,6 @@ export const Account = () => (
       <ListItem divider leading={<HelpCircle aria-hidden className="size-5 text-muted" />} title="Help and cancellation policy" onClick={() => {}} />
       <ListItem leading={<LogOut aria-hidden className="size-5 text-muted" />} title="Sign out" />
     </Card>
+    <AppearanceCard />
   </div>
 );

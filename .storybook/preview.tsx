@@ -1,4 +1,5 @@
 import type { Preview } from '@storybook/react-vite';
+import { withThemeByDataAttribute } from '@storybook/addon-themes';
 import '../src/index.css';
 import './docs.css';
 import { patronimTheme } from './theme';
@@ -7,6 +8,8 @@ const preview: Preview = {
   // Every component gets a generated Docs page: description, live examples with source, props table.
   tags: ['autodocs'],
   decorators: [
+    // Same switch as the app: data-theme on <html> flips the token variables
+    withThemeByDataAttribute({ themes: { light: 'light', dark: 'dark' }, defaultTheme: 'light', attributeName: 'data-theme' }),
     (Story) => (
       <div className="font-sans text-ink">
         <Story />

@@ -34,3 +34,10 @@ Style: impeccable (brief tokens are the contract)
 ## Completed
 
 - Patronim prototype, 25 Sep 2026.
+
+## Dark theme (25 Sep 2026)
+
+- [x] Tokens: every color has light + dark in `tokens.js`; Tailwind reads CSS variables (`--c-*`), opacity modifiers still work
+- [x] Storybook: theme toolbar (addon-themes, same `data-theme` attribute), Colors page with both columns and live contrast, Guidelines → Themes
+- [x] App: System / Light / Dark in the desktop side panel (next to Scenario) and on each role's profile; `?theme=dark` for links; choice saved per viewer
+- [x] `npm run shots` → 15 light in `shots/`, 15 dark in `shots/dark/`, all reviewed

@@ -7,6 +7,7 @@ import { SectionTitle } from '../../components/SectionTitle';
 import { RoleAvatar } from '../../app/Shell';
 import { money } from '../../lib/pricing';
 import { useStore } from '../../store/useStore';
+import { AppearanceCard } from '../../app/AppearanceCard';
 
 const THREADS = [
   { who: 'Dana Levi', initials: 'DL', text: 'Guest may arrive 30 min early at Hayarkon', at: '11:32', unread: true },
@@ -95,6 +96,7 @@ export const PatronProfile = () => {
           <input type="checkbox" checked={offline} onChange={(e) => setOffline(e.target.checked)} className="size-5 accent-navy" />
         </label>
       </Card>
+      <AppearanceCard />
     </div>
   );
 };
