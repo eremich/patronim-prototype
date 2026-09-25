@@ -39,8 +39,9 @@ element; cards, lists and headers stay quiet around it.
 Light and dark use **the same token names**; only the values change (see Foundations → Colors, both columns).
 
 - **How it switches:** `data-theme="dark"` on `<html>`, or the system setting when no choice is made. The Storybook toolbar uses the same attribute.
-- **Dark canvas is brand-tinted navy night**, not black. Cards are one step lighter; hierarchy comes from surface steps, not shadows.
-- **Primary actions flip to light navy with dark text** (`text-surface` on `bg-navy`), keeping 7:1 contrast.
+- **Dark surfaces are neutral graphite**, almost no hue. Cards are one step lighter than the canvas; hierarchy comes from surface steps, not shadows.
+- **Brand blue is spent, not spread.** Only primary actions, selection and links are blue, and it is a true blue (hue ≈ 220°), never lavender or indigo.
+- **Primary actions flip to a light blue with dark text** (`text-surface` on `bg-navy`), keeping 7:1 contrast.
 - **Status colors stay meaningful:** fills get slightly brighter, `-ink` text shades get light. Icons and labels still carry the meaning.
 - **Never hard-code a color** in a component. If something looks wrong in one theme, fix the token, not the component.
 - The phone bezel and the photos do not change with the theme.
