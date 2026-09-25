@@ -7,7 +7,7 @@ import { Stepper } from '../../components/Stepper';
 import { MISSING_TYPES } from '../../data/catalog';
 import { useStore } from '../../store/useStore';
 
-const MISSING_PHOTO = '/mock/room-bathroom.svg';
+const MISSING_PHOTO = '/mock/room-bathroom.jpg';
 
 export const MissingItemSheet = ({ open, onClose, jobId }: { open: boolean; onClose: () => void; jobId: string }) => {
   const report = useStore((s) => s.reportMissing);

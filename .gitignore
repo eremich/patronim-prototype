@@ -18,3 +18,5 @@
 # App
 node_modules/
 dist/
+
+.vercel

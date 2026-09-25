@@ -14,7 +14,7 @@ type Story = StoryObj;
 export const Example: Story = {
   render: () => (
     <div className="grid grid-cols-2 gap-3">
-      <PhotoTile src="/mock/room-bathroom.svg" alt="Bathroom after cleaning" caption="After" />
+      <PhotoTile src="/mock/room-bathroom.jpg" alt="Bathroom after cleaning" caption="After" />
       <PhotoTile alt="Add after photo" required onAdd={() => {}} />
     </div>
   ),

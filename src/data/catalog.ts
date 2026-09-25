@@ -8,7 +8,7 @@ export const PROPERTIES: Property[] = [
     bedrooms: 2,
     area: 70,
     zip: '6343503',
-    photo: '/mock/property-ben-yehuda.svg',
+    photo: '/mock/property-ben-yehuda.jpg',
     access: 'Key box by the door, code 4412. Third floor, no lift.',
   },
   {
@@ -18,7 +18,7 @@ export const PROPERTIES: Property[] = [
     bedrooms: 1,
     area: 48,
     zip: '6345113',
-    photo: '/mock/property-hayarkon.svg',
+    photo: '/mock/property-hayarkon.jpg',
     access: 'Doorman has the key. Say you are from Patronim.',
   },
   {
@@ -28,7 +28,7 @@ export const PROPERTIES: Property[] = [
     bedrooms: 3,
     area: 100,
     zip: '6342507',
-    photo: '/mock/property-bograshov.svg',
+    photo: '/mock/property-bograshov.jpg',
     access: 'Smart lock. The code arrives by SMS 30 min before start.',
   },
   {
@@ -38,7 +38,7 @@ export const PROPERTIES: Property[] = [
     bedrooms: 0,
     area: 32,
     zip: '6608612',
-    photo: '/mock/property-levinski.svg',
+    photo: '/mock/property-levinski.jpg',
     access: 'Key box on the gate, code 0719.',
   },
   {
@@ -48,7 +48,7 @@ export const PROPERTIES: Property[] = [
     bedrooms: 1,
     area: 55,
     zip: '6423901',
-    photo: '/mock/property-weizmann.svg',
+    photo: '/mock/property-weizmann.jpg',
     access: 'Ground floor. Key under the blue plant pot.',
   },
 ];
@@ -151,13 +151,13 @@ const ROOM_TEMPLATE: { id: string; name: string; items: string[] }[] = [
 ];
 
 export const ROOM_PHOTOS: Record<string, string> = {
-  bedroom: '/mock/room-bedroom.svg',
-  bathroom: '/mock/room-bathroom.svg',
-  kitchen: '/mock/room-kitchen.svg',
-  living: '/mock/room-living.svg',
+  bedroom: '/mock/room-bedroom.jpg',
+  bathroom: '/mock/room-bathroom.jpg',
+  kitchen: '/mock/room-kitchen.jpg',
+  living: '/mock/room-living.jpg',
 };
 
-export const REDO_PHOTO = '/mock/redo-mirror.svg';
+export const REDO_PHOTO = '/mock/redo-mirror.jpg';
 
 export const makeRooms = (): Room[] =>
   ROOM_TEMPLATE.map((r) => ({
