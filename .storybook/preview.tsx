@@ -4,6 +4,10 @@ import '../src/index.css';
 import './docs.css';
 import { patronimTheme } from './theme';
 
+// Docs pages are always light (Storybook's docs theme), so the preview must not follow the OS dark mode.
+// Stories switch themes with the toolbar, which overrides this attribute.
+if (!document.documentElement.dataset.theme) document.documentElement.dataset.theme = 'light';
+
 const preview: Preview = {
   // Every component gets a generated Docs page: description, live examples with source, props table.
   tags: ['autodocs'],
