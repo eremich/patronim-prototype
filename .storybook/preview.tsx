@@ -1,26 +1,67 @@
-import type { Preview } from '@storybook/react-vite';
-import { withThemeByDataAttribute } from '@storybook/addon-themes';
+import type { Decorator, Preview } from '@storybook/react-vite';
 import '../src/index.css';
 import './docs.css';
 import { patronimTheme } from './theme';
 
 // Docs pages are always light (Storybook's docs theme), so the preview must not follow the OS dark mode.
-// Stories switch themes with the toolbar, which overrides this attribute.
 if (!document.documentElement.dataset.theme) document.documentElement.dataset.theme = 'light';
+
+type ThemeGlobal = 'light' | 'dark' | 'both';
+
+/**
+ * Same switch as the app: data-theme flips the token variables.
+ * Docs pages sit on Storybook's white page, so the page stays light and only the examples go dark;
+ * theming the whole <html> there turned the docs text white on white.
+ * "both" renders the story twice, light and dark side by side (tokens are scoped to [data-theme]).
+ */
+const withTheme: Decorator = (Story, ctx) => {
+  const theme = (ctx.globals.theme as ThemeGlobal) ?? 'light';
+  const fullscreen = ctx.parameters.layout === 'fullscreen';
+  const docs = ctx.viewMode === 'docs';
+  document.documentElement.dataset.theme = !docs && theme === 'dark' ? 'dark' : 'light';
+  const frame = (t: 'light' | 'dark') => (
+    <div data-theme={t} className={`relative bg-canvas font-sans text-ink ${fullscreen ? '' : 'rounded-card p-6'}`}>
+      <Story />
+    </div>
+  );
+  if (docs && theme === 'dark') return frame('dark');
+  if (theme !== 'both' || fullscreen) return <div className="font-sans text-ink"><Story /></div>;
+  return (
+    <div className="flex flex-wrap items-start gap-4">
+      {frame('light')}
+      {frame('dark')}
+    </div>
+  );
+};
 
 const preview: Preview = {
   // Every component gets a generated Docs page: description, live examples with source, props table.
   tags: ['autodocs'],
+  globalTypes: {
+    theme: {
+      description: 'Theme',
+      toolbar: {
+        title: 'Theme',
+        icon: 'mirror',
+        dynamicTitle: true,
+        items: [
+          { value: 'light', title: 'Light', icon: 'sun' },
+          { value: 'dark', title: 'Dark', icon: 'moon' },
+          { value: 'both', title: 'Both side by side', icon: 'sidebyside' },
+        ],
+      },
+    },
+  },
+  initialGlobals: { theme: 'light' },
   decorators: [
-    // Same switch as the app: data-theme on <html> flips the token variables
-    withThemeByDataAttribute({ themes: { light: 'light', dark: 'dark' }, defaultTheme: 'light', attributeName: 'data-theme' }),
     (Story) => (
-      <div className="font-sans text-ink">
+      <>
         <Story />
         {/* Bottom sheets portal here, like in the app's phone frame */}
         <div id="sheet-root" className="pointer-events-none fixed inset-0 z-sheet" />
-      </div>
+      </>
     ),
+    withTheme,
   ],
   parameters: {
     layout: 'centered',
